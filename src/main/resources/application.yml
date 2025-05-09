@@ -1,0 +1,30 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: hrms_springboot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hrms?serverTimezone=GMT%2b8
+    username: root
+    password: mysqlGzy@
+#    applicationname: hrms_springboot
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#  type-aliases-package: com.gzy.hrms_springboot.entity
+
+#mybatis:
+#  mapper-locations:
+#    classpath:mapper/*.xml #扫描所有mybatis的xml文件
+#classpath就代表resources
+#logging:
+#  level:
+#    org.springframework.boot.autoconfigure: DEBUG
+#    org.mybatis: DEBUG
