@@ -8,7 +8,6 @@
       <el-container>
         <el-header style="border-bottom: 1px solid #cccccc;">
           <Header :collapseBtnClass="collapseBtnClass" :collapse="collapse"/>
-
         </el-header>
 
 <!--        <div >-->
@@ -65,7 +64,6 @@ export default {
         this.collapseBtnClass = 'el-icon-s-fold'
       }
     },
-
   }
 }
 </script>

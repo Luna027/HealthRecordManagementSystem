@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  name: "AboutView"
+  name: "DoctorLogin"
 }
 </script>
 <template>
@@ -45,7 +45,7 @@ export default {
         </svg>
       </div>
 
-      <section class="container1">
+      <section class="container1" >
         <section class="wrapper">
           <header>
             <div class="logo">
@@ -84,6 +84,9 @@ body {
   overflow: hidden;
   background-color: #DBE0F9;
   font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body .svg-top {
   position: absolute;

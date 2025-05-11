@@ -14,7 +14,6 @@ export default {
       multipleSelection:[],
       dialogFormVisible:false,
     }
-
   },
   created(){
     this.load()
