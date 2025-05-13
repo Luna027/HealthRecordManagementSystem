@@ -13,7 +13,7 @@ const routes = [
         path: 'user', name: 'User', component: () => import('../views/User.vue')
       },
       {
-        path: '/doctor', name: 'Doctor', component: () => import('../views/Doctor.vue')
+        path: 'doctor', name: 'Doctor', component: () => import('../views/Doctor.vue')
       },
 
     ]

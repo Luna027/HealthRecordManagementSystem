@@ -1,6 +1,57 @@
 <script lang="ts">
 export default {
-  name: "DoctorLogin"
+  name: "DoctorLogin",
+  data() {
+    return {
+      doctor: {
+        name:"",
+        password:""
+      },
+      // rules: {
+      //   name: [
+      //     { required: true, message: '请输入姓名', trigger: 'blur' },
+      //     { min: 0, max: 20, message: '长度在 0 到 20 个字符', trigger: 'blur' }
+      //   ],
+      //   password: [
+      //     { required: true, message: '请输入密码', trigger: 'blur' },
+      //     { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+      //   ],
+      // }
+    }
+  },
+  methods:{
+    login() {
+      this.request.post("/doctor/login", this.doctor).then(res => {
+        if (res.code === '200') {
+          localStorage.setItem("doctor", JSON.stringify(res.data));
+          this.$message.success("登录成功！");
+          setTimeout(() => {
+              window.location.href = '/doctor';
+          }, 10);
+        } else {
+          this.$message.error("用户名或密码错误");
+        }
+      });
+    }
+
+  }
+
+  // methods: {
+  //   login() {
+  //     // this.administrators.role = this.radio;
+  //     this.request.post("/doctor/login", this.doctor).then(res => {
+  //       if (res.code !== 200) {
+  //         this.$message.error("用户名或密码错误")
+  //       } else {
+  //         this.$router.push("/doctor").then(() => {
+  //           // 解决页面跳转后样式异常的问题
+  //           window.location.reload();
+  //         // window.location.href = 'http://localhost:8080/user';
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
 }
 </script>
 <template>
@@ -57,11 +108,11 @@ export default {
             </div>
           </header>
           <section class="main-content">
-            <form action="">
-              <input type="username" placeholder="姓 名">
+            <form   @submit.prevent="login" action="">
+              <input type="name" autocomplete="off" v-model="doctor.name" placeholder="姓 名">
               <div class="line"></div>
-              <input type="password" placeholder="密 码">
-              <button >登录</button>
+              <input type="password" autocomplete="off" show-password v-model="doctor.password" placeholder="密 码">
+              <button @click="login">登录</button>
             </form>
           </section>
           <footer>

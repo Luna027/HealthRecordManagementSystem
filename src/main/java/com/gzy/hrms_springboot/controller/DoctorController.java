@@ -1,22 +1,59 @@
 package com.gzy.hrms_springboot.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.gzy.hrms_springboot.common.Constants;
+import com.gzy.hrms_springboot.common.Result;
+import com.gzy.hrms_springboot.controller.dto.DoctorDto;
 import com.gzy.hrms_springboot.entity.Doctor; // 修改1：导入Doctor类
 import com.gzy.hrms_springboot.service.DoctorService; // 修改2：导入DoctorService类
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+
 //@CrossOrigin
-@RestController
-@RequestMapping("/doctor") // 修改3：将请求映射改为/doctor
-public class DoctorController {
+    @RestController
+    @RequestMapping("/doctor") // 修改3：将请求映射改为/doctor
+    public class DoctorController {
 
     @Autowired
     private DoctorService doctorService; // 修改4：将UserService改为DoctorService
+//
+//    //前端用户登录
+//    @PostMapping("/login")
+//    public boolean login(@RequestBody DoctorDto doctorDto) {
+//        String name = doctorDto.getName();
+//        String password = doctorDto.getPassword();
+//        if(StrUtil.isBlank(name)||StrUtil.isBlank(password)){
+//            return false;
+//        }
+//        return doctorService.login (doctorDto);
+//    }
+    //前端用户登录
+    @PostMapping("/login")
+    public Result login(@RequestBody DoctorDto doctorDto) {
+        String name = doctorDto.getName();
+        String password = doctorDto.getPassword();
+        if(!StrUtil.isBlank(name)||!StrUtil.isBlank(password)){
+            DoctorDto dto=this.doctorService.login(doctorDto);
+            return Result.success(dto);
+        }else{
+            return Result.error(Constants.CODE_400,"参数错误");
+        }
+    }
+
+//    @PostMapping({"/register"})
+//    public Result register(@RequestBody DoctorDto doctorDto) {
+//        String username = doctorDto.getName();
+//        String password = doctorDto.getPassword();
+//        return !StrUtil.isBlank(username) && !StrUtil.isBlank(password) ? Result.success(this.doctorService.register(doctorDto)) : Result.error("400", "参数错误");
+//    }
+
 
     //新增和修改
     @PostMapping

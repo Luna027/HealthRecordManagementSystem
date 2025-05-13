@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class Doctor {
-
     @TableId(type = IdType.AUTO,value = "doctor_id")
     private Integer id;
     private String name;
@@ -26,8 +25,6 @@ public class Doctor {
     private String department;
     private String position;
     private String phone;
-    @TableField(value = "avatar_url") //制定数据库的字段名称
-    private String avatar;
 //    private String avatarUrl; //驼峰自动转下划线
 }
 
